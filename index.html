@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object Detection</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Feather Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <!-- TensorFlow.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <!-- COCO-SSD model -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Object Detection</h1>
+            <div class="controls">
+                <button id="startBtn" class="btn btn-primary">
+                    <i data-feather="video"></i> Start
+                </button>
+                <button id="stopBtn" class="btn btn-danger" disabled>
+                    <i data-feather="video-off"></i> Stop
+                </button>
+            </div>
+        </div>
+
+        <div class="camera-container">
+            <video id="video" playsinline></video>
+            <canvas id="canvas"></canvas>
+            <div id="loading" class="loading">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <p>Loading model...</p>
+            </div>
+        </div>
+
+        <div class="settings">
+            <div class="form-group">
+                <label for="confidenceThreshold">Confidence Threshold</label>
+                <input type="range" class="form-range" id="confidenceThreshold" 
+                       min="0" max="1" step="0.1" value="0.6">
+                <span id="confidenceValue">0.6</span>
+            </div>
+        </div>
+
+        <div id="detections" class="detections"></div>
+    </div>
+
+    <script src="detector.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
